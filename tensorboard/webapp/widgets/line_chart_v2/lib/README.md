@@ -13,6 +13,7 @@ This is a generic charting library with a focus on performance.
 - coordinatior: A utility module for converting coordinate systems. Abstracts
   away certain renderer quirks and holds onto state, helping with performance
   optimizations.
+- data drawable: a view that draws renders data in a rectangle it is given.
 - renderer: a stateful module that knows how to render limited number of
   primitives such as line, rect, circle, and text (for more accurate set of
   supported shapes, please refer to the abstract class) using a defined
