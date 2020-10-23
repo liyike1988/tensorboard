@@ -13,7 +13,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ==============================================================================*/
 
-import {Extent, Paths, Rect} from './types';
+import {Extent, Paths, Rect} from './internal_types';
 
 export function convertRectToExtent(rect: Rect): Extent {
   return {

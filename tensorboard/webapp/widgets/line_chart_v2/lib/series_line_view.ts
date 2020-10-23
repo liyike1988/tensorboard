@@ -19,6 +19,8 @@ export class SeriesLineView extends DataDrawable {
   redraw() {
     for (const series of this.series) {
       const metadata = this.metadataMap[series.id];
+      if (!metadata) continue;
+
       this.renderer.drawLine(series.id, series.paths, {
         color: metadata.color,
         visible: metadata.visible || false,

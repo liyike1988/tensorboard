@@ -107,7 +107,7 @@ describe('line_chart_v2/lib/drawable test', () => {
       ];
       root.setData(dataSeries);
       option.coordinator.setViewBoxRect({x: 0, y: -50, width: 2, height: 100});
-      option.coordinator.setDomContainerRect(domRect);
+      option.coordinator.setDomContainerDimension(domRect);
     });
 
     it('updates the data coordinate on redraw', () => {

@@ -15,7 +15,7 @@ limitations under the License.
 
 import {Renderer} from './renderer';
 import {LineSpec} from './renderer_types';
-import {Paths} from '../types';
+import {Paths} from '../internal_types';
 import {arePathsEqual} from '../utils';
 
 export class SvgRenderer extends Renderer<SVGPathElement> {

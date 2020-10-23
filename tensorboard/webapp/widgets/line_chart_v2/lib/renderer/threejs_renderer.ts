@@ -15,8 +15,8 @@ limitations under the License.
 import {color as d3Color} from 'd3';
 import * as THREE from 'three';
 
+import {Dimension, Paths} from '../internal_types';
 import {ThreeCoordinator} from '../threejs_coordinator';
-import {Paths, Rect} from '../types';
 import {arePathsEqual, isOffscreenCanvasSupported} from '../utils';
 import {Renderer} from './renderer';
 import {LineSpec} from './renderer_types';
@@ -55,8 +55,8 @@ export class ThreeRenderer extends Renderer<THREE.Object3D> {
     this.renderer.setPixelRatio(devicePixelRatio);
   }
 
-  onResize(rect: Rect) {
-    this.renderer.setSize(rect.width, rect.height);
+  onResize(dim: Dimension) {
+    this.renderer.setSize(dim.width, dim.height);
   }
 
   removeCacheable(cacheable: THREE.Object3D): void {

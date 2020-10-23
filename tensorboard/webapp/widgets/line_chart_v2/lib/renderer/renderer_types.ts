@@ -12,16 +12,16 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 ==============================================================================*/
-import {Paths, Rect} from '../types';
+import {Paths, Dimension} from '../internal_types';
 
 export interface IRenderer {
   /**
-   * Certain renderer requires DOM dimensions for correct density and operations. The
+   * Certain renderer requires DOM dimensions for correct rendering density. The
    * method is invoked when container is resized.
    *
-   * @param domRect Container dimensions
+   * @param domDimension Container dimensions
    */
-  onResize(domRect: Rect): void;
+  onResize(domDimension: Dimension): void;
 
   drawLine(cacheId: string, paths: Paths, spec: LineSpec): void;
 
@@ -35,5 +35,9 @@ export interface LineSpec {
   color: string;
   opacity?: number;
   width: number;
-  clipRect?: Rect;
+}
+
+export enum RendererType {
+  SVG,
+  WEBGL,
 }

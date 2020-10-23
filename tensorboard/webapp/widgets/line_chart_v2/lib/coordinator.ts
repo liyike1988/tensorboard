@@ -13,12 +13,15 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ==============================================================================*/
 
+import {Dimension, Rect} from './internal_types';
 import {createScale, Scale} from './scale';
-import {Rect, ScaleType} from './types';
+import {ScaleType} from './scale_types';
 import {convertRectToExtent} from './utils';
 
 type XCoordinate = number;
 type YCoordinate = number;
+
+let indentifier = 0;
 
 /**
  * A stateful convenient utility around scale for converting coordinate systems.
@@ -47,7 +50,7 @@ export class Coordinator {
     height: 1,
   };
 
-  protected lastUpdated: number = 0;
+  protected lastUpdated: number = indentifier++;
   private currentViewBoxRect: Rect = {
     x: 0,
     width: 1,
@@ -59,14 +62,18 @@ export class Coordinator {
     return this.lastUpdated;
   }
 
+  protected updateIdentifier() {
+    this.lastUpdated = indentifier++;
+  }
+
   setXScale(scale: Scale) {
     this.xScale = scale;
-    this.lastUpdated = Date.now();
+    this.updateIdentifier();
   }
 
   setYScale(scale: Scale) {
     this.yScale = scale;
-    this.lastUpdated = Date.now();
+    this.updateIdentifier();
   }
 
   getCurrentViewBoxRect(): Rect {
@@ -75,13 +82,10 @@ export class Coordinator {
 
   setViewBoxRect(rectInDataCoordinate: Rect) {
     this.currentViewBoxRect = rectInDataCoordinate;
-    this.lastUpdated = Date.now();
+    this.updateIdentifier();
   }
 
-  setDomContainerRect(rect: Rect) {
-    this.domContainerRect = rect;
-    this.lastUpdated = Date.now();
-  }
+  setDomContainerDimension(dim: Dimension) {}
 
   /**
    * Converts data coordinate into ui coordinates where the ui coordinate bounds are

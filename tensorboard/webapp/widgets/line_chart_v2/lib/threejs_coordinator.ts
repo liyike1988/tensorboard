@@ -14,9 +14,8 @@ limitations under the License.
 ==============================================================================*/
 
 import * as THREE from 'three';
-
 import {Coordinator} from './coordinator';
-import {Rect} from './types';
+import {Dimension} from './internal_types';
 
 export class ThreeCoordinator extends Coordinator {
   private readonly camera = new THREE.OrthographicCamera(
@@ -28,13 +27,13 @@ export class ThreeCoordinator extends Coordinator {
     100
   );
 
-  setDomContainerRect(rect: Rect) {
-    super.setDomContainerRect(rect);
-    this.camera.left = rect.x;
-    this.camera.right = rect.x + rect.width;
-    this.camera.top = rect.y;
-    this.camera.bottom = rect.y + rect.height;
+  setDomContainerDimension(dim: Dimension) {
+    this.camera.left = 0;
+    this.camera.right = dim.width;
+    this.camera.top = 0;
+    this.camera.bottom = dim.height;
     this.camera.updateProjectionMatrix();
+    this.updateIdentifier();
   }
 
   getCamera() {

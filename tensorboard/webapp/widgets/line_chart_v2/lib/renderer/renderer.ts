@@ -13,8 +13,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ==============================================================================*/
 
-import {LineSpec, IRenderer} from './renderer_types';
-import {Paths, Rect} from '../types';
+import {Dimension, Paths} from '../internal_types';
+import {IRenderer, LineSpec} from './renderer_types';
 
 export type RenderGroupMap<Cacheable> = Map<
   string,
@@ -25,7 +25,7 @@ export type RenderGroupMap<Cacheable> = Map<
 >;
 
 export abstract class Renderer<Cacheable> implements IRenderer {
-  onResize(rect: Rect): void {}
+  onResize(dim: Dimension): void {}
 
   drawLine(cacheId: string, paths: Float32Array, spec: LineSpec): void {
     this.cacheIdsToRemove.delete(cacheId);

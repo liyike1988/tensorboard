@@ -49,17 +49,6 @@ describe('line_chart_v2/lib/coordinator test', () => {
             });
           },
         },
-        {
-          updatingProp: 'domContainerRect',
-          updater: () => {
-            coordinator.setDomContainerRect({
-              x: 0,
-              y: 0,
-              width: 500,
-              height: 500,
-            });
-          },
-        },
       ].forEach(({updatingProp, updater}) => {
         it(`updates updateIdentifier when setting ${updatingProp}`, () => {
           const before = coordinator.getUpdateIdentifier();
@@ -103,9 +92,7 @@ describe('line_chart_v2/lib/coordinator test', () => {
           width: 100,
           height: 100,
         });
-        coordinator.setDomContainerRect({
-          x: 0,
-          y: 0,
+        coordinator.setDomContainerDimension({
           width: 1000,
           height: 1000,
         });
@@ -150,9 +137,7 @@ describe('line_chart_v2/lib/coordinator test', () => {
         width: 5,
         height: 5,
       });
-      coordinator.setDomContainerRect({
-        x: 50,
-        y: 50,
+      coordinator.setDomContainerDimension({
         width: 50,
         height: 50,
       });
@@ -160,9 +145,7 @@ describe('line_chart_v2/lib/coordinator test', () => {
 
     describe('camera', () => {
       it('updates the camera when changing dom container rect', () => {
-        coordinator.setDomContainerRect({
-          x: 50,
-          y: 50,
+        coordinator.setDomContainerDimension({
           width: 100,
           height: 100,
         });
@@ -171,10 +154,10 @@ describe('line_chart_v2/lib/coordinator test', () => {
         // y-axis is flipped since getViewCoordinate flips the y-axis.
         // We can override the getViewCoordinate to flip it back but there is no strong
         // reason to do so when we can just invert the camera.
-        expect(top).toBe(50);
-        expect(bottom).toBe(150);
-        expect(left).toBe(50);
-        expect(right).toBe(150);
+        expect(top).toBe(0);
+        expect(bottom).toBe(100);
+        expect(left).toBe(0);
+        expect(right).toBe(100);
       });
     });
   });

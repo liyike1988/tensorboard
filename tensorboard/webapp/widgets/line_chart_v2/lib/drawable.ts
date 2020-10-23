@@ -20,7 +20,7 @@ import {
   DataSeries,
   DataSeriesMetadataMap,
   Rect,
-} from './types';
+} from './internal_types';
 
 export interface DrawableConfig {
   coordinator: Coordinator;
